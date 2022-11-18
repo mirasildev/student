@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS student (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    username VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    phone_number VARCHAR(20) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

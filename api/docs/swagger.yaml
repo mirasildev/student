@@ -1,0 +1,68 @@
+basePath: /v1
+definitions:
+  models.CreateStudent:
+    properties:
+      students:
+        items:
+          $ref: '#/definitions/models.StudentRequest'
+        type: array
+    type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.StudentRequest:
+    properties:
+      email:
+        type: string
+      first_name:
+        maxLength: 30
+        minLength: 2
+        type: string
+      last_name:
+        maxLength: 30
+        minLength: 2
+        type: string
+      phone_number:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - first_name
+    - last_name
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: This is a book service api.
+  version: "1.0"
+paths:
+  /student:
+    post:
+      consumes:
+      - application/json
+      description: Create a student
+      parameters:
+      - description: Student
+        in: body
+        name: student
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateStudent'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateStudent'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Create a student
+      tags:
+      - student
+swagger: "2.0"
