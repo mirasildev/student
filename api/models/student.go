@@ -21,7 +21,7 @@ type StudentRequest struct {
 
 
 type CreateStudent struct {
-	Students []*StudentRequest
+	Students []*StudentRequest `json:"student" binding:"required,dive"`
 }
 
 type GetAllUsersResponse struct {

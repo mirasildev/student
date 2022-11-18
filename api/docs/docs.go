@@ -44,7 +44,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateStudent"
+                            "$ref": "#/definitions/models.ResponseOK"
                         }
                     },
                     "500": {
@@ -60,8 +60,11 @@ const docTemplate = `{
     "definitions": {
         "models.CreateStudent": {
             "type": "object",
+            "required": [
+                "student"
+            ],
             "properties": {
-                "students": {
+                "student": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/models.StudentRequest"
@@ -73,6 +76,14 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ResponseOK": {
+            "type": "object",
+            "properties": {
+                "message": {
                     "type": "string"
                 }
             }

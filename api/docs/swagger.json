@@ -36,7 +36,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateStudent"
+                            "$ref": "#/definitions/models.ResponseOK"
                         }
                     },
                     "500": {
@@ -52,8 +52,11 @@
     "definitions": {
         "models.CreateStudent": {
             "type": "object",
+            "required": [
+                "student"
+            ],
             "properties": {
-                "students": {
+                "student": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/models.StudentRequest"
@@ -65,6 +68,14 @@
             "type": "object",
             "properties": {
                 "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ResponseOK": {
+            "type": "object",
+            "properties": {
+                "message": {
                     "type": "string"
                 }
             }

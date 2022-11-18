@@ -2,14 +2,21 @@ basePath: /v1
 definitions:
   models.CreateStudent:
     properties:
-      students:
+      student:
         items:
           $ref: '#/definitions/models.StudentRequest'
         type: array
+    required:
+    - student
     type: object
   models.ErrorResponse:
     properties:
       error:
+        type: string
+    type: object
+  models.ResponseOK:
+    properties:
+      message:
         type: string
     type: object
   models.StudentRequest:
@@ -57,7 +64,7 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.CreateStudent'
+            $ref: '#/definitions/models.ResponseOK'
         "500":
           description: Internal Server Error
           schema:

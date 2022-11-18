@@ -15,11 +15,11 @@ import (
 // @Accept json
 // @Produce json
 // @Param student body models.CreateStudent true "Student"
-// @Success 201 {object} models.CreateStudent
+// @Success 201 {object} models.ResponseOK
 // @Failure 500 {object} models.ErrorResponse
 func (h *handlerV1) CreateUser(c *gin.Context) {
 	var (
-		req *models.StudentRequest
+		req *models.CreateStudent
 	)
 
 	err := c.ShouldBindJSON(&req)
@@ -28,17 +28,7 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 		return
 	}
 
-	err = h.storage.Student().Create(&models.CreateStudent{
-		Students: []*models.StudentRequest{
-			{
-				FirstName:   req.FirstName,
-				LastName:    req.LastName,
-				UserName:    req.UserName,
-				Email:       req.Email,
-				PhoneNumber: req.PhoneNumber,
-			},
-		},
-	})
+	err = h.storage.Student().Create(req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
