@@ -32,5 +32,5 @@ type GetAllStudentsResult struct {
 
 type StudentStorageI interface {
 	Create(s *models.CreateStudent) (error)
-	// GetAll(params *GetAllStudentsParams) (*GetAllStudentsResult, error)
+	GetAll(params *GetAllStudentsParams) (*GetAllStudentsResult, error)
 }

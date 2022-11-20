@@ -24,7 +24,13 @@ type CreateStudent struct {
 	Students []*StudentRequest `json:"student" binding:"required,dive"`
 }
 
-type GetAllUsersResponse struct {
-	Students []*Student `json:"categories"`
+type GetAllStudentsResponse struct {
+	Students []*Student `json:"students"`
 	Count int32   `json:"count"`
+}
+
+type GetAllParams struct {
+	Limit  int32  `json:"limit" binding:"required" default:"10"`
+	Page   int32  `json:"page" binding:"required" default:"1"`
+	Search string `json:"search"`
 }

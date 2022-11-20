@@ -34,8 +34,8 @@ func New(opt *RouterOptions) *gin.Engine {
 
 	apiV1 := router.Group("/v1")
 
-	// apiV1.GET("/student/", handlerV1.GetAllStudents)
 	apiV1.POST("/student", handlerV1.CreateUser)
+	apiV1.GET("/students", handlerV1.GetAllStudents)
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 

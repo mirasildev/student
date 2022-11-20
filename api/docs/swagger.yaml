@@ -14,9 +14,35 @@ definitions:
       error:
         type: string
     type: object
+  models.GetAllStudentsResponse:
+    properties:
+      count:
+        type: integer
+      students:
+        items:
+          $ref: '#/definitions/models.Student'
+        type: array
+    type: object
   models.ResponseOK:
     properties:
       message:
+        type: string
+    type: object
+  models.Student:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      phone_number:
+        type: string
+      username:
         type: string
     type: object
   models.StudentRequest:
@@ -70,6 +96,39 @@ paths:
           schema:
             $ref: '#/definitions/models.ErrorResponse'
       summary: Create a student
+      tags:
+      - student
+  /students:
+    get:
+      consumes:
+      - application/json
+      description: Get all students
+      parameters:
+      - default: 10
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - default: 1
+        in: query
+        name: page
+        required: true
+        type: integer
+      - in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetAllStudentsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Get all students
       tags:
       - student
 swagger: "2.0"
